@@ -12,22 +12,27 @@ spec:
         app: product-service-app
     spec:
       containers:
-      - name: product-service-app
-        image: kabovblg/productservice
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 8080
-        env:
-        - name: CONFIG_SERVER_URL
-          valueFrom:
-            configMapKeyRef:
-              name: config-cm
-              key: config_url
-        - name: DB_HOST
-          valueFrom:
-            configMapKeyRef:
-              name: mysql-cm
-              key: hostname
+        - name: product-service-app
+          image: kabovblg/productservice
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: CONFIG_SERVER_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: config-cm
+                  key: config_url
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: mysql-cm
+                  key: hostname
+            - name: EUREKA_SERVER_ADDRESS
+              valueFrom:
+                configMapKeyRef:
+                  name: eureka-cm
+                  key: eureka_service_address
 
 ---
 
@@ -39,5 +44,5 @@ spec:
   selector:
     app: product-service-app
   ports:
-  - port: 80
-    targetPort: 8080
+    - port: 80
+      targetPort: 8080
