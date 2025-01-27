@@ -128,7 +128,7 @@
 						<image>openjdk:17</image>
 					</from>
 					<to>
-						<image>{REPO_URL}/productservice</image>
+						<image>${REPO_URL}/productservice</image>
 						<tags>${project.version}</tags>
 					</to>
 				</configuration>
